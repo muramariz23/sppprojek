@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php $this->load->view("admin/_partials/head.php") ?>
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+
+        <!-- MENU SIDEBAR-->
+        <?php $this->load->view("admin/_partials/sidebar.php") ?>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <?php $this->load->view("admin/_partials/navbar.php") ?>
+
+            <!-- MAIN CONTENT-->
+<div class="card mb-3">
+					<div class="card bg-light ">
+    <div class="card-header" style="margin-top: 50px;">
+        <a class="btn btn-outline-primary" href="<?php echo site_url('admin/siswa/add') ?>">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Tambah
+        </a>
+    </div>
+    <div class="card-body">
+        <table id="example" class="table table-striped table-bordered" style="width:100%; background-color:aliceblue;">
+            <thead>
+                <tr>
+                    <th style="width: 500px;">Nisn</th>
+                    <th style="width: 500px;">Nis</th>
+                    <th style="width: 500px;">Nama</th>
+                    <th style="width: 1000px;">Nama Kelas</th>
+                    <th style="width: 500px;">Alamat</th>
+                    <th style="width: 500px;">No Telpon</th>
+                    <th style="width: 500px;">Spp</th>
+                    <th style="width: 500px;">Foto</th>
+                    <th class="text-center" style="width: 250px;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if (!empty($GetSiswa)) {
+                    foreach ($GetSiswa as $Get) {
+                ?>
+                        <tr>
+
+                            <td><?php echo $Get->nisn; ?></td>
+                            <td><?php echo $Get->nis; ?></td>
+                            <td><?php echo $Get->nama; ?></td>
+                            <td><?php echo $Get->nama_kelas; ?></td>
+                            <td><?php echo $Get->alamat; ?></td>
+                            <td><?php echo $Get->no_telp; ?></td>
+                            <td><?php echo $Get->nominal; ?></td>
+                            <td><?php echo $Get->image; ?></td>
+                            <td class="text-center">
+                                <a class="btn btn-outline-primary" href="<?php echo site_url('admin/siswa/edit/') . $Get->nisn ?>">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                    Edit
+                                </a>
+                                <a onclick="deleteConfirm('<?php echo site_url('admin/siswa/delete/'.$Get->nisn) ?>')" href="#!" class="btn btn-small text-danger"><i class="fas fa-trash"></i> Hapus</a>
+                            </td>
+
+                        </tr>
+                <?php
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+				</div>
+
+                    <?php $this->load->view("admin/_partials/footer.php") ?>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <?php $this->load->view("admin/_partials/js.php") ?>
+    <!-- <?php //$this->load->view("admin/_partials/scrolltop.php") ?>
+     --><?php $this->load->view("admin/_partials/modal.php") ?>
+    <?php $this->load->view("admin/_partials/js.php") ?>
+
+
+ <script>
+    function deleteConfirm(url){
+        $('#btn-delete').attr('href', url);
+        $('#deleteModal').modal();
+    }
+    </script>
+    
+</body>
+
+</html>
+<!-- end document-->
+
+
+
